@@ -163,9 +163,9 @@ class GameFragment : Fragment(), GameContract.View {
                     gamePresenter.checkResult(GameButton.NONE, currentNumber)
                 },
 
-                Observable.interval(1, TimeUnit.SECONDS)
+               /* Observable.interval(1, TimeUnit.SECONDS)
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe { increaseNumber() },
+                        .subscribe { increaseNumber() },*/
 
                 RxView.clicks(fizz).subscribe {
                     gamePresenter.checkResult(GameButton.FIZZ, currentNumber)

@@ -79,7 +79,7 @@ class GamePresenterTest {
 
     @Test
     fun wrongAnswerWith1life_shouldCallGameOver() {
-        `when`(gameView.totalLife()).thenReturn(1)
+        `when`(gameView.totalLife()).thenReturn(0)
         presenter.checkResult(GameButton.FIZZ, 4)
         verify(gameView).removeLife()
         verify(gameView).showGameOver()
@@ -87,6 +87,7 @@ class GamePresenterTest {
 
     @Test
     fun wrongAnswer_shouldRemoveLifeAndIncreaseNumber() {
+        `when`(gameView.totalLife()).thenReturn(3)
         presenter.checkResult(GameButton.NONE, 2)
         verify(gameView).removeLife()
         verify(gameView).increaseNumber()

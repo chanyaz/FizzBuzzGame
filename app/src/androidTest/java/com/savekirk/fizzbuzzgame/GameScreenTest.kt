@@ -17,6 +17,7 @@ import org.hamcrest.Matcher
 import org.hamcrest.Matchers.`is` as _is
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.TypeSafeMatcher
+import org.junit.Before
 
 
 @RunWith(AndroidJUnit4::class)
@@ -53,9 +54,14 @@ class GameScreenTest {
     @Rule @JvmField
     val testRule : ActivityTestRule<MainActivity> = ActivityTestRule<MainActivity>(MainActivity::class.java)
 
+    @Before
+    fun initTest() {
+        testRule.activity.newGame()
+    }
+
     @Test
     fun defaultScoreIsZero() {
-        onView(withId(R.id.score)).check(matches(withText("0")))
+        onView(withId(R.id.score_view)).check(matches(withText("0")))
     }
 
     @Test
