@@ -3,7 +3,7 @@ Simple Android version of the classical [Fizz Buzz](https://www.wikiwand.com/en/
 
 Touch the appropriate button to indicate whether the next word is a fizz, buzz or fizzbuzz. 
 
-The primary purpose of the game is to showcase the following:
+The primary purpose of the game is to demonstrate the following:
 
 - MVP pattern in Android
 - Kotlin programming language
