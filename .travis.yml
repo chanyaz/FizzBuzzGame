@@ -11,7 +11,7 @@ android:
 licenses:
     - 'android-sdk-license-.+'
 
-script: ./gradlew build connectedCheck --info --stacktrace
+script: ./gradlew clean build --info --stacktrace
 
 notifications:
     email: false
