@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">FizzBuzz Game</string>
+
+    <string name="game_life">game_life</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="high_score">High score</string>
+
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="score_view">score_view</string>
+    <string name="pts">pts</string>
+    <string name="buzz">buzz</string>
+    <string name="fizzbuzz">fizzbuzz</string>
+    <string name="fizz">fizz</string>
+</resources>

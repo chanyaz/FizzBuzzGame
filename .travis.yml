@@ -1,0 +1,24 @@
+language: android
+
+android:
+    components:
+        - platform-tools
+        - tools
+        - android-23
+        - build-tools-23.0.3
+        - extra-android-support
+
+licenses:
+    - 'android-sdk-license-.+'
+
+script: ./gradlew build connectedCheck --info --stacktrace
+
+notifications:
+    email: false
+
+sudo: false
+
+cache:
+    directories:
+        - $HOME/.gradle
+        - $HOME/.m2
