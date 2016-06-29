@@ -1,131 +1,131 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#C5E1A5"
+    android:background="#b6e284"
+    android:padding="@dimen/activity_vertical_margin"
     tools:context="com.savekirk.fizzbuzzgame.game.GameFragment">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="16dp">
-
-        <TextView
-            android:id="@+id/score_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_gravity="start"
-            android:transitionName="@string/score_view"
-           />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/pts"
-            android:textSize="20sp"
-            android:layout_marginLeft="4dp"
-            />
-
-        <LinearLayout
-            android:id="@+id/life_holder"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:animateLayoutChanges="true"
-            android:gravity="end"
-            android:layout_gravity="end">
-
-            <include layout="@layout/game_life" />
-            <include layout="@layout/game_life" />
-            <include layout="@layout/game_life" />
-
-
-
-        </LinearLayout>
-
-
-
-
-    </LinearLayout>
-
-
-
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:orientation="horizontal"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:layout_marginTop="100dp">
-
-        <Button
-            android:id="@+id/number"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:textSize="42sp"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:background="@drawable/border"
-            android:text="0"/>
-
-        <ImageView
-            android:id="@+id/fizz"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:padding="@dimen/game_btn_padding"
-            android:src="@drawable/ic_fizz"
-            android:textSize="40sp"
-            android:background="@drawable/border"
-            android:contentDescription="@string/fizz"
-            />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/buzz"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:padding="@dimen/game_btn_padding"
-            android:background="@drawable/border"
-            android:src="@drawable/ic_buzz"
-            android:contentDescription="@string/buzz"/>
-
-        <ImageView
-            android:id="@+id/fizzbuzz"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:padding="@dimen/game_btn_padding"
-            android:src="@drawable/ic_fizzbuzz"
-            android:textSize="40sp"
-            android:background="@drawable/border"
-            android:contentDescription="@string/fizzbuzz"
-            />
-
-    </LinearLayout>
-
     <TextView
-        android:id="@+id/timer"
+        android:id="@+id/score_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
+        android:text="0"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:layout_margin="16dp"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_gravity="start"
+        android:transitionName="@string/score_view"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pts"
+        android:textSize="20sp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginStart="4dp"
+        android:layout_toRightOf="@id/score_view"
+        android:layout_alignParentTop="true"
+        />
+
+
+    <LinearLayout
+        android:id="@+id/life_holder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal"
+        android:animateLayoutChanges="true"
+        android:gravity="end"
+        android:layout_gravity="end">
+
+        <include layout="@layout/game_life" />
+        <include layout="@layout/game_life" />
+        <include layout="@layout/game_life" />
+
+    </LinearLayout>
+
+
+
+    <Button
+        android:id="@+id/number"
+        android:layout_width="@dimen/box_size"
+        android:layout_height="@dimen/box_size"
+        android:textSize="@dimen/number_size"
+        android:background="@drawable/green_border"
+        android:layout_marginBottom="@dimen/number_bottom_margin"
+        android:layout_above="@+id/fizzbuzz"
+        android:layout_centerHorizontal="true"
+        android:text="00"/>
 
 
 
 
-</LinearLayout>
+
+    <ImageView
+        android:id="@+id/fizz"
+        android:layout_width="@dimen/box_size"
+        android:layout_height="@dimen/box_size"
+        android:padding="@dimen/game_btn_padding"
+        android:src="@drawable/ic_fizz"
+        android:textSize="40sp"
+        android:background="@drawable/border"
+        android:contentDescription="@string/fizz"
+        android:layout_gravity="start"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        />
+
+
+
+
+   <!-- <LinearLayout
+        android:id="@id/bottom_btns_holder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+
+
+
+    </LinearLayout>-->
+
+    <ImageView
+        android:id="@+id/buzz"
+        android:layout_width="@dimen/box_size"
+        android:layout_height="@dimen/box_size"
+        android:padding="@dimen/game_btn_padding"
+        android:background="@drawable/border"
+        android:src="@drawable/ic_buzz"
+        android:layout_gravity="end"
+        android:contentDescription="@string/buzz"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"/>
+
+
+    <ImageView
+        android:id="@id/fizzbuzz"
+        android:layout_width="@dimen/box_size"
+        android:layout_height="@dimen/box_size"
+        android:padding="@dimen/game_btn_padding"
+        android:src="@drawable/ic_fizzbuzz"
+        android:textSize="@dimen/game_btn_text_size"
+        android:background="@drawable/border"
+        android:contentDescription="@string/fizzbuzz"
+        android:layout_above="@id/fizz"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_centerHorizontal="true"
+        />
+
+
+
+
+</RelativeLayout>
