@@ -3,6 +3,8 @@ Simple Android version of the classical [Fizz Buzz](https://www.wikiwand.com/en/
 
 Touch the appropriate button to indicate whether the next word is a fizz, buzz or fizzbuzz. 
 
+![home_screen](https://drive.google.com/file/d/0Bx9MfNW9E3OCbFFPc0VIa25CVW8/view) ![game_screen](https://drive.google.com/file/d/0Bx9MfNW9E3OCYkxUbmZPVmUzY3M/view?usp=sharing)
+
 The primary purpose of the game is to demonstrate the following:
 
 - MVP pattern in Android
