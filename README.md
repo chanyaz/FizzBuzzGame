@@ -3,7 +3,7 @@ Simple Android version of the classical [Fizz Buzz](https://www.wikiwand.com/en/
 
 Touch the appropriate button to indicate whether the next word is a fizz, buzz or fizzbuzz. 
 
-![home_screen](http://i.imgur.com/WPtY0E8.png) ![game_screen](http://i.imgur.com/cErhwg9.png)
+![home_screen](http://imgur.com/sWqfclJ.png) ![game_screen](http://imgur.com/95JWuw3.png)
 
 The primary purpose of the game is to demonstrate the following:
 
