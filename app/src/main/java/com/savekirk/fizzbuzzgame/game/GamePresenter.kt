@@ -75,13 +75,10 @@ class GamePresenter(data: GameDataSource, view: GameContract.View) : GameContrac
         if (button.equals(fb)) {
             gameView.playSound()
             this.increaseScore(1)
-            //gameView.increaseNumber()
         } else {
             gameView.removeLife()
             if (gameView.totalLife() == 0) {
                 this.gameOver()
-            } else {
-                //gameView.increaseNumber()
             }
         }
     }

@@ -66,17 +66,6 @@ class GamePresenterTest {
         verify(dataRepository).saveScore(6)
     }
 
-    @Test
-    fun clickingNumberView_shouldIncreaseNumber() {
-        presenter.checkResult(GameButton.NONE,0)
-        verify(gameView).increaseNumber()
-    }
-
-    @Test
-    fun correctButton_shouldIncreaseNumber() {
-        presenter.checkResult(GameButton.FIZZ, 2)
-        verify(gameView).increaseNumber()
-    }
 
     @Test
     fun wrongAnswerWith1life_shouldCallGameOver() {
@@ -87,13 +76,11 @@ class GamePresenterTest {
     }
 
     @Test
-    fun wrongAnswer_shouldRemoveLifeAndIncreaseNumber() {
+    fun wrongAnswer_shouldRemoveLife() {
         `when`(gameView.totalLife()).thenReturn(3)
-        presenter.checkResult(GameButton.NONE, 2)
+        presenter.checkResult(GameButton.NONE, 3)
         verify(gameView).removeLife()
-        verify(gameView).increaseNumber()
     }
-
 
 
     @Test
@@ -103,7 +90,6 @@ class GamePresenterTest {
         kverify(dataRepository).getScore(capture(getScoreCallbackCaptor))
         getScoreCallbackCaptor.value.onScoreLoaded(5)
     }
-
 
 
 

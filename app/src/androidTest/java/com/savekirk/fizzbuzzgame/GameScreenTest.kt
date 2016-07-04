@@ -7,11 +7,17 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import android.support.test.espresso.Espresso.onView
+import android.support.test.espresso.intent.Intents.intended
+import android.support.test.espresso.intent.matcher.IntentMatchers.hasComponent
+import android.support.test.espresso.UiController
+import android.support.test.espresso.ViewAction
 import android.support.test.espresso.action.ViewActions.*
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers.*
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import com.savekirk.fizzbuzzgame.home.HomeFragment
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers.`is` as _is
@@ -50,6 +56,25 @@ class GameScreenTest {
         }
     }
 
+    fun setTextInTextView(value: String) : ViewAction {
+        return object : ViewAction {
+            @SuppressWarnings("unchecked")
+            override fun getConstraints() : Matcher<View> {
+                return allOf(isDisplayed(), isAssignableFrom(TextView::class.java));
+            }
+
+            override fun perform(uiController : UiController, view: View) {
+                (view as TextView).setText(value);
+            }
+
+            override fun getDescription() : String {
+                return "replace text";
+            }
+        };
+    }
+
+
+
 
     @Rule @JvmField
     val testRule : ActivityTestRule<MainActivity> = ActivityTestRule<MainActivity>(MainActivity::class.java)
@@ -74,32 +99,24 @@ class GameScreenTest {
 
     @Test
     fun wrongAnswer_shouldReduceLife() {
-        onView(withId(R.id.number)).perform(doubleClick())
-        onView(withId(R.id.number)).perform(click())
+        onView(withId(R.id.number)).perform(setTextInTextView("4"))
+        onView(withId(R.id.fizz)).perform(click())
         onView(withId(R.id.life_holder)).check(matches(allOf(
                 isDisplayed(),
                 hasChildren(_is(2))
         )))
     }
 
-
     @Test
-    fun clickingNumberView_shouldIncreaseNumber() {
-
-        onView(withId(R.id.number)).perform(click())
-
-        onView(withId(R.id.number)).check(matches(withText("1")))
-
-    }
-
-    @Test
-    fun correctButtonClick_shouldIncreaseNumber() {
-
-        onView(withId(R.id.number)).perform(doubleClick())
-
+    fun threeWrongAnswers_shouldTakeAllLives() {
+        onView(withId(R.id.number)).perform(setTextInTextView("4"))
         onView(withId(R.id.fizz)).perform(click())
-
-        onView(withId(R.id.number)).check(matches(withText("3")))
+        onView(withId(R.id.number)).perform(setTextInTextView("6"))
+        onView(withId(R.id.buzz)).perform(click())
+        onView(withId(R.id.number)).perform(setTextInTextView("9"))
+        onView(withId(R.id.fizzbuzz)).perform(click())
+        onView(withId(R.id.play)).check(matches(isDisplayed()))
     }
+
 
 }
