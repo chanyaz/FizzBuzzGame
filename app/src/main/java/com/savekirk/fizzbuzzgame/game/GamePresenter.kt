@@ -2,12 +2,14 @@ package com.savekirk.fizzbuzzgame.game
 
 import com.savekirk.fizzbuzzgame.Data.GameDataSource
 import com.savekirk.fizzbuzzgame.GameButton
+import java.util.*
 
 class GamePresenter(data: GameDataSource, view: GameContract.View) : GameContract.Presenter {
 
     private var gameView : GameContract.View = view
     private var dataSource : GameDataSource = data
     private var tempScore : Int = 0
+    private val checkedNumbers : HashSet<Int> = hashSetOf(0)
 
     init {
         gameView.setPresenter(this)
@@ -63,18 +65,23 @@ class GamePresenter(data: GameDataSource, view: GameContract.View) : GameContrac
         dataSource.saveScore(score)
     }
 
-    override fun checkResult(button: GameButton, currentNo: Int) {
-        val fb = fizzBuzz(currentNo + 1)
+    override fun isNumberChecked(number: Int): Boolean {
+        return checkedNumbers.contains(number)
+    }
+
+    override fun checkResult(button: GameButton, currentNumber: Int) {
+        checkedNumbers.add(currentNumber)
+        val fb = fizzBuzz(currentNumber)
         if (button.equals(fb)) {
             gameView.playSound()
             this.increaseScore(1)
-            gameView.increaseNumber()
+            //gameView.increaseNumber()
         } else {
             gameView.removeLife()
             if (gameView.totalLife() == 0) {
                 this.gameOver()
             } else {
-                gameView.increaseNumber()
+                //gameView.increaseNumber()
             }
         }
     }

@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Vibrator
 import android.support.v4.app.Fragment
+import android.support.v4.graphics.drawable.DrawableCompat
 import android.transition.ChangeBounds
 import android.transition.Slide
 import android.transition.TransitionManager
@@ -47,6 +48,7 @@ class GameFragment : Fragment(), GameContract.View {
     lateinit private var subscriptions: CompositeSubscription
     private var currentNumber = 0
     lateinit private var numberSubscription : Subscription
+    private var errorBackground : Boolean = false
 
     companion object {
         /**
@@ -79,6 +81,8 @@ class GameFragment : Fragment(), GameContract.View {
     }
 
     override fun removeLife() {
+        number.setBackgroundResource(R.drawable.red_border)
+        errorBackground = true
         vibrate()
         val childCount = life_holder.childCount
         if (childCount > 0) {
@@ -132,8 +136,14 @@ class GameFragment : Fragment(), GameContract.View {
     }
 
     override fun increaseNumber() {
-        val current = Integer.valueOf(number.text.toString())
-        number.text = "${current + 1}"
+        //val current = Integer.valueOf(number.text.toString())
+        if (!gamePresenter.isNumberChecked(currentNumber)) {
+            gamePresenter.checkResult(GameButton.NONE, currentNumber)
+        }
+        number.text = "${currentNumber + 1}"
+        if (errorBackground) {
+            number.setBackgroundResource(R.drawable.green_border)
+        }
     }
 
     override fun onStop() {
@@ -143,7 +153,6 @@ class GameFragment : Fragment(), GameContract.View {
 
     override fun onResume() {
         super.onResume()
-        subscriptions = subscribeAll()
     }
 
 
@@ -157,15 +166,16 @@ class GameFragment : Fragment(), GameContract.View {
         mp.start();
     }
 
+
     private fun subscribeAll() : CompositeSubscription {
         return CompositeSubscription(
                 RxView.clicks(number).subscribe {
                     gamePresenter.checkResult(GameButton.NONE, currentNumber)
                 },
 
-               /* Observable.interval(1, TimeUnit.SECONDS)
+                Observable.interval(2, TimeUnit.SECONDS)
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe { increaseNumber() },*/
+                        .subscribe { increaseNumber() },
 
                 RxView.clicks(fizz).subscribe {
                     gamePresenter.checkResult(GameButton.FIZZ, currentNumber)

@@ -24,5 +24,6 @@ interface GameContract {
         fun checkResult(button: GameButton, currentNumber: Int)
         fun saveLife(number: Int)
         fun getLife()
+        fun isNumberChecked(number: Int) : Boolean
     }
 }
